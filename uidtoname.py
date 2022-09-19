@@ -32,11 +32,11 @@ if __name__ == '__main__':
         if str(resp_src) != "{'code': -404, 'message': '啥都木有', 'ttl': 1}":
             name = up_name(resp_src)
             print(i)
-            with open(Folderpath + '\\123.txt', 'a+', encoding='utf-8') as f:
+            with open(Folderpath + '\\uid.txt', 'a+', encoding='utf-8') as f:
                 f.write("UP主名字：" + str({name}) + "\t" + "B站UID：" + str(i) +
                         "\n")
             sleep(1.3)  # 时间太少会被封ip，大概1秒以上即可
         else:
             print("UID" + str(i) + "已注销或不存在")
-            with open(Folderpath + '\\error.txt', 'a+', encoding='utf-8') as f:
+            with open(Folderpath + '\\erroruid.txt', 'a+', encoding='utf-8') as f:
                 f.write("UID" + str(i) + "已注销或不存在\n")
