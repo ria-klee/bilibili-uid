@@ -1,6 +1,7 @@
 from time import sleep
 import requests
 import os
+import re
 
 Folderpath = os.getcwd()  # 当前目录
 
@@ -24,16 +25,17 @@ def up_name(json):
 
 
 if __name__ == '__main__':
-    uid = [672346917, 672353429, 351609538, 672328094, 672342685, 703007996]
+    #uid = [672346917, 672353429, 351609538, 672328094, 672342685, 703007996]
+    uid = [12345678]
     for i in uid:
         url = "https://api.bilibili.com/x/space/acc/info?mid=" + str(
             i) + "&jsonp=jsonp"
         resp_src = request_code(url=url)
         if str(resp_src) != "{'code': -404, 'message': '啥都木有', 'ttl': 1}":
-            name = up_name(resp_src)
-            print(i)
+            # 正则提取后转化为字符串
+            name = ''.join(re.findall(r"[^{'.*?'}]+", up_name(resp_src), re.S))
             with open(Folderpath + '\\uid.txt', 'a+', encoding='utf-8') as f:
-                f.write("UP主名字：" + str({name}) + "\t" + "B站UID：" + str(i) +
+                f.write("UP主名字：" + str(name) + "\t" + "B站UID：" + str(i) +
                         "\n")
             sleep(1.3)  # 时间太少会被封ip，大概1秒以上即可
         else:
