@@ -25,8 +25,7 @@ def up_name(json):
 
 
 if __name__ == '__main__':
-    #uid = [672346917, 672353429, 351609538, 672328094, 672342685, 703007996]
-    uid = [12345678]
+    uid = [672346917, 672353429, 351609538, 672328094, 672342685, 703007996]
     for i in uid:
         url = "https://api.bilibili.com/x/space/acc/info?mid=" + str(
             i) + "&jsonp=jsonp"
